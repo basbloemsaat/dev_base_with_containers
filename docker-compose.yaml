@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  python:
+    build: .
+    container_name: cea_python
+    volumes:
+      - ./requirements:/requirements
