@@ -1,6 +1,6 @@
 FROM python:3
 
-ADD init.sh /init.sh
+ADD /docker/init.sh /init.sh
 RUN chmod 755 /init.sh
 
 RUN useradd -ms /bin/bash pythonuser
