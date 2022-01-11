@@ -9,6 +9,7 @@ WORKDIR /home/pythonuser
 
 ENV PYTHONUNBUFFERED=1
 ENV PATH="/home/pythonuser/.local/bin:${PATH}"
+ENV PYTHONPATH="${PYTHONPATH}:/home/pythonuser/lib"
 
 VOLUME [ "/requirements" ]
 

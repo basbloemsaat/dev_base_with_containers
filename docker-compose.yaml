@@ -7,3 +7,13 @@ services:
     container_name: cea_python
     volumes:
       - ./python/requirements:/requirements
+      - ./python/lib:/home/pythonuser/lib
+      - ./python/bin:/home/pythonuser/bin
+
+  node:
+    build:
+      context: ./web
+      dockerfile: ./docker/Dockerfile
+    container_name:  cea_node
+
+
