@@ -27,13 +27,28 @@ services:
       - 10000:10000
 
   postgres:
+    # https://hub.docker.com/_/postgres
     container_name: cea_postgres
     image: postgres:latest
+    profiles:
+      - postgres
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=postgres
-      # - POSTGRES_PASSWORD=${FE_PASSWORD}
       - POSTGRES_HOST_AUTH_METHOD=trust
     # volumes:
-      # - ./databases/init_postgres:/docker-entrypoint-initdb.d
+    #   - ./databases/init_postgres:/docker-entrypoint-initdb.d
+
+  mariadb:
+    # https://hub.docker.com/_/mariadb
+    container_name: cea_mariadb
+    profiles:
+      - mariadb
+    image: mariadb:latest
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+    ports:
+      - 3306:3306
+    # volumes:
+    #   - ./databases/init_mariadb:/docker-entrypoint-initdb.d
