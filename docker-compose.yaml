@@ -1,19 +1,27 @@
 version: "3.9"
 services:
   python:
-    build: 
+    container_name: cea_python
+    build:
       context: ./python
       dockerfile: ./docker/Dockerfile
-    container_name: cea_python
     volumes:
       - ./python/requirements:/requirements
       - ./python/lib:/home/pythonuser/lib
       - ./python/bin:/home/pythonuser/bin
+    ports:
+      - 10001:10001
 
   node:
+    container_name: cea_node
     build:
       context: ./web
       dockerfile: ./docker/Dockerfile
-    container_name:  cea_node
-
-
+    volumes:
+      - ./web/src:/home/nodeuser/src
+      - ./web/package-lock.json:/home/nodeuser/package-lock.json
+      - ./web/package.json:/home/nodeuser/package.json
+      - ./web/tsconfig.json:/home/nodeuser/tsconfig.json
+      - ./web/webpack.config.js:/home/nodeuser/webpack.config.js
+    ports:
+      - 10000:10000

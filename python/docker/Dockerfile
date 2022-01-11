@@ -1,7 +1,7 @@
 FROM python:3
 
-ADD /docker/init.sh /init.sh
-RUN chmod 755 /init.sh
+ADD /docker/python_init.sh /python_init.sh
+RUN chmod 755 /python_init.sh
 
 RUN useradd -ms /bin/bash pythonuser
 USER pythonuser
@@ -14,4 +14,6 @@ ENV PYTHONPATH="${PYTHONPATH}:/home/pythonuser/lib"
 VOLUME [ "/requirements" ]
 
 RUN /usr/local/bin/python -m pip install --upgrade pip
-CMD [ "/init.sh" ]
+CMD [ "/python_init.sh" ]
+
+EXPOSE 10001
