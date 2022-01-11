@@ -25,3 +25,15 @@ services:
       - ./web/webpack.config.js:/home/nodeuser/webpack.config.js
     ports:
       - 10000:10000
+
+  postgres:
+    container_name: cea_postgres
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      # - POSTGRES_PASSWORD=${FE_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    # volumes:
+      # - ./databases/init_postgres:/docker-entrypoint-initdb.d
