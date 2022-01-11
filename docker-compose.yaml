@@ -1,19 +1,19 @@
 version: "3.9"
 services:
   python:
-    container_name: cea_python
+    container_name: dev_python
     build:
       context: ./python
       dockerfile: ./docker/Dockerfile
     volumes:
       - ./python/requirements:/requirements
-      - ./python/lib:/home/pythonuser/lib
+      - ./python/pylib:/home/pythonuser/pylib
       - ./python/bin:/home/pythonuser/bin
     ports:
       - 10001:10001
 
   node:
-    container_name: cea_node
+    container_name: dev_node
     build:
       context: ./web
       dockerfile: ./docker/Dockerfile
@@ -28,7 +28,7 @@ services:
 
   postgres:
     # https://hub.docker.com/_/postgres
-    container_name: cea_postgres
+    container_name: dev_postgres
     image: postgres:latest
     profiles:
       - postgres
@@ -42,7 +42,7 @@ services:
 
   mariadb:
     # https://hub.docker.com/_/mariadb
-    container_name: cea_mariadb
+    container_name: dev_mariadb
     profiles:
       - mariadb
     image: mariadb:latest
