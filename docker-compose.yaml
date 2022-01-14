@@ -7,8 +7,10 @@ services:
       dockerfile: ./docker/Dockerfile
     volumes:
       - ./python/requirements:/requirements
-      - ./python/pylib:/home/pythonuser/pylib
-      - ./python/bin:/home/pythonuser/bin
+      - ./python/modules:/home/pythonuser/modules
+      - ./python/scripts:/home/pythonuser/scripts
+      - ./python/tests:/home/pythonuser/tests
+      - ./python/pytest.ini:/home/pythonuser/pytest.ini
     ports:
       - 10001:10001
 
