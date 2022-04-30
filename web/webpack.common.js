@@ -2,16 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
   entry: {
-    rootindex: "./src/indexes/index.ts",
+    index: "./src/indexes/index.ts",
   },
   output: {
-    filename: (pathData) => {
-      return pathData.chunk.name !== "error_pagina"
-        ? "[name].js"
-        : "error/[name].js";
-    },
+    filename: (pathData) => `${pathData.chunk.name}.js`,
     path: path.resolve(__dirname, "dist/"),
   },
   module: {
@@ -35,15 +30,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/templates/index.ejs",
       filename: "./index.html",
-      chunks: ["rootindex"],
+      chunks: ["index"],
     }),
   ],
-  devServer: {
-    // contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 10000,
-    // proxy: {
-    //   "/api": "http://python:10081",
-    // },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
 };
