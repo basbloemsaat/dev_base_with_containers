@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import testlib
+from testlib import testable
 
-print('executable')
+testable()
 

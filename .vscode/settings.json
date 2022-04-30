@@ -1,3 +1,6 @@
 {
-  "python.analysis.extraPaths": ["python/modules"]
+  "python.analysis.extraPaths": [
+    "python/modules"
+  ],
+  "python.formatting.provider": "black"
 }
