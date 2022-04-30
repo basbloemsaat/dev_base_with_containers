@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   python:
-    container_name: dev_python
+    container_name: python
     build:
       context: ./python
       dockerfile: ./docker/Dockerfile
@@ -13,9 +13,11 @@ services:
       - ./python/pytest.ini:/home/pythonuser/pytest.ini
     ports:
       - 10001:10001
+    networks:
+      - development
 
-  node:
-    container_name: dev_node
+  web:
+    container_name: web
     build:
       context: ./web
       dockerfile: ./docker/Dockerfile
@@ -27,10 +29,12 @@ services:
       - ./web/webpack.config.js:/home/nodeuser/webpack.config.js
     ports:
       - 10000:10000
+    networks:
+      - development
 
   postgres:
     # https://hub.docker.com/_/postgres
-    container_name: dev_postgres
+    container_name: postgres
     image: postgres:latest
     profiles:
       - postgres
@@ -43,10 +47,12 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     # volumes:
     #   - ./databases/init_postgres:/docker-entrypoint-initdb.d
-
+    networks:
+      - development
+      
   mariadb:
     # https://hub.docker.com/_/mariadb
-    container_name: dev_mariadb
+    container_name: mariadb
     profiles:
       - mariadb
     image: mariadb:latest
@@ -59,3 +65,10 @@ services:
       - 3306:3306
     # volumes:
     #   - ./databases/init_mariadb:/docker-entrypoint-initdb.d
+    networks:
+      - development
+
+networks:
+  development:
+    name: development
+    driver: bridge
