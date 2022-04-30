@@ -1,11 +1,3 @@
 {
-    "spellright.language": [
-        "en",
-        "nl"
-    ],
-    "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
-    ]
+  "python.analysis.extraPaths": ["python/modules"]
 }
